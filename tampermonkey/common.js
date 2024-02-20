@@ -8,7 +8,7 @@
 
 //  Evaluate XPath and return a list of elements.
 function evalXpath(xpath) {
-    console.log("evalXpath: xpath=%s", xpath);
+    console.log("Enter evalXpath: xpath=%s", xpath);
     var results = [];
     var elem;
     var nodesSnapshot = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -16,6 +16,7 @@ function evalXpath(xpath) {
         elem = nodesSnapshot.snapshotItem(i);
         results.push(elem);
     }
+    console.log("Leave evalXpath: results.length=%s, xpath=%s", results.length, xpath);
     return results;
 }
 
