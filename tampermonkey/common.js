@@ -1,10 +1,9 @@
-// Shared functions for Tampermonkey scripts
-// version 0.1
-// 2024-02-04
-// Copyright (c) 2024, Yun Huang, huangyunict@gmail.com
-// Released under the GPL license
-// http://www.gnu.org/copyleft/gpl.html
-// Refer to this script: https://github.com/huangyunict/public_host/blob/main/tampermonkey/common.js
+//  Shared functions for Tampermonkey scripts
+//  version 0.1
+//  2024-02-04
+//  Copyright (c) 2024, Yun Huang, huangyunict@gmail.com
+//  Released under the GPL license:  http://www.gnu.org/copyleft/gpl.html
+//  Reference to this script: https://raw.githubusercontent.com/huangyunict/public_host/main/tampermonkey/common.js
 // --------------------------------------------------------------------
 
 //  Evaluate XPath and return a list of elements.
