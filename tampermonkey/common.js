@@ -4,6 +4,7 @@
 // Copyright (c) 2024, Yun Huang, huangyunict@gmail.com
 // Released under the GPL license
 // http://www.gnu.org/copyleft/gpl.html
+// Refer to this script: https://github.com/huangyunict/public_host/blob/main/tampermonkey/common.js
 // --------------------------------------------------------------------
 
 //  Evaluate XPath and return a list of elements.
