@@ -8,10 +8,11 @@
 // --------------------------------------------------------------------
 
 //  Evaluate XPath and return a list of elements.
-function evalXPath(docNode, xpath) {
+function evalXpath(xpath) {
+    console.log("evalXpath: xpath=%s", xpath);
     var results = [];
     var elem;
-    var nodesSnapshot = document.evaluate(xpath, docNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+    var nodesSnapshot = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
     for (var i=0; i<nodesSnapshot.snapshotLength; i++) {
         elem = nodesSnapshot.snapshotItem(i);
         results.push(elem);
