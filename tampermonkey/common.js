@@ -13,14 +13,17 @@
  * @param {Node} contextNode The context node.
  */
 function evalXpath(xpath, contextNode = document) {
-    console.log("Enter evalXpath: xpath=%s, contextNode=%s", xpath, contextNode);
+    console.debug("Enter evalXpath: xpath=%s, contextNode=%s", xpath, contextNode);
     const results = [];
+    if (contextNode === undefined || contextNode === null) {
+        return results;
+    }
     const nodesSnapshot = document.evaluate(xpath, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
     for (let i=0; i<nodesSnapshot.snapshotLength; i++) {
         let elem = nodesSnapshot.snapshotItem(i);
         results.push(elem);
     }
-    console.log("Leave evalXpath: results.length=%s, xpath=%s, contextNode=%s", results.length, xpath, contextNode);
+    console.debug("Leave evalXpath: results.length=%s, xpath=%s, contextNode=%s", results.length, xpath, contextNode);
     return results;
 }
 
