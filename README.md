@@ -8,7 +8,7 @@ This folder contains useful shell libraries and scripts that can be used in all 
 
 bin/base_func.sh: The basic functions and settings used in other scripts.
 
-## :monkey: tampermonkey
+## :monkey: monkey
 
-This folder contains useful tampermonkey scripts that can be used in all other projects.
+This folder contains useful Violentmonkey scripts, which may or may not be used in Greasemonkey / Tampermonkey scripts.
 
