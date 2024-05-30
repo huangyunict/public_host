@@ -3,7 +3,11 @@
 //  2024-02-04
 //  Copyright (c) 2024, Yun Huang, huangyunict@gmail.com
 //  Released under the GPL license:  http://www.gnu.org/copyleft/gpl.html
-//  Reference to this script: https://raw.githubusercontent.com/huangyunict/public_host/main/monkey/xpath_utils.js
+//  Refer to this script by adding the following statement in the user script.
+//    @require https://raw.githubusercontent.com/huangyunict/public_host/main/monkey/xpath_utils.js
+// --------------------------------------------------------------------
+//  This library depending on the LoggerUtils scripts, which should be included in the user script by adding:
+//    @require https://raw.githubusercontent.com/huangyunict/public_host/main/monkey/logger_utils.js
 // --------------------------------------------------------------------
 
 /**
@@ -15,10 +19,11 @@ class XpathUtils {
    *
    * @param {string} xpath The XPath to query.
    * @param {Node} contextNode The context node.
+   * @param {string} logLevel The logging level string.
    * @return {array} List of matched elements.
    */
-  static evalXpath(xpath, contextNode = document) {
-    console.debug("Enter evalXpath: xpath=%s, contextNode=%s", xpath, contextNode);
+  static evalXpath(xpath, contextNode = document, logLevel = 'debug') {
+    LoggerUtils.logMessage(logLevel, "Enter evalXpath: xpath=%s, contextNode=%s", xpath, contextNode);
     const results = [];
     if (contextNode === undefined || contextNode === null) {
       return results;
@@ -27,7 +32,7 @@ class XpathUtils {
     for (let i=0; i<nodesSnapshot.snapshotLength; i++) {
       results.push(nodesSnapshot.snapshotItem(i));
     }
-    console.debug("Leave evalXpath: results.length=%s, xpath=%s, contextNode=%s", results.length, xpath, contextNode);
+    LoggerUtils.logMessage(logLevel, "Leave evalXpath: results.length=%s, xpath=%s, contextNode=%s", results.length, xpath, contextNode);
     return results;
   }
 

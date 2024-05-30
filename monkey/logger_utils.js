@@ -3,7 +3,8 @@
 //  2024-06-01
 //  Copyright (c) 2024, Yun Huang, huangyunict@gmail.com
 //  Released under the GPL license:  http://www.gnu.org/copyleft/gpl.html
-//  Reference to this script: https://raw.githubusercontent.com/huangyunict/public_host/main/monkey/logger_utils.js
+//  Refer to this script by adding the following statement in the user script.
+//    @require https://raw.githubusercontent.com/huangyunict/public_host/main/monkey/logger_utils.js
 // --------------------------------------------------------------------
 
 /**
@@ -21,7 +22,7 @@ class LoggerUtils {
     if (logLevel === 'info') return console.info;
     if (logLevel === 'warn' || logLevel === 'warning') return console.warn;
     if (logLevel === 'error') return console.error;
-  
+
     // Default to console.log if logLevel is not recognized or just 'log'.
     return console.log;
   }
@@ -34,5 +35,5 @@ class LoggerUtils {
    */
   static logMessage(logLevel, ...args) {
     LoggerUtils.getLogger(logLevel)(...args);
-  } 
+  }
 }
