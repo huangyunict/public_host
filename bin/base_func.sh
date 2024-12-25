@@ -28,7 +28,7 @@ export ERROR_SIGPIPE=141
 #       This wrapping function always return 0.
 function safe_let
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${FUNCNAME[0]}: expr_str" 1>&2
         exit 1
@@ -48,7 +48,7 @@ function safe_let
 #       This wrapping function always return 0.
 function safe_expr
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${FUNCNAME[0]}: expr_str ..." 1>&2
         exit 1
@@ -81,7 +81,7 @@ function safe_expr
 #       Safely execute given command string, if failed, exit the script with error.
 function safe_execute
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${0}: ${FUNCNAME[0]} cmd_str" 1>&2
         exit 1
@@ -127,14 +127,14 @@ function safe_execute
 #       Append message with new line to the given file.
 function safe_echo
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${0}: ${FUNCNAME[0]} msg [file]" 1>&2
         exit 1
     fi
     local msg="${1}"
     local file="/dev/stdout"
-    if [ "$#" -ge 2 ]
+    if [ $# -ge 2 ]
     then
         file="${2}"
     fi
@@ -149,7 +149,7 @@ function safe_echo
 #       If the given files or directories do not exist, do nothing, i.e. do NOT exit with error.
 function safe_rm
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${0}: ${FUNCNAME[0]} param [param]..." 1>&2
         exit 1
@@ -173,7 +173,7 @@ function safe_rm
 #       If the given directory already exists, do nothing.
 function safe_mkdir
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${0}: ${FUNCNAME[0]} dir_name" 1>&2
         exit 1
@@ -196,7 +196,7 @@ function safe_mkdir
 #       If the target object already exists, first delete it, then link.
 function safe_ln
 {
-    if [ "$#" -lt 2 ]
+    if [ $# -lt 2 ]
     then
         echo "${0}: ${FUNCNAME[0]} src_path tgt_path [hard]" 1>&2
         exit 1
@@ -204,7 +204,7 @@ function safe_ln
     local src_path="${1}"
     local tgt_path="${2}"
     local hard_opt=""
-    if [ "$#" -lt 3 ]
+    if [ $# -lt 3 ]
     then
         hard_opt="-s"
     else
@@ -225,9 +225,8 @@ function safe_ln
 #   the inputs must be absolute path
 function safe_rln
 {
-    if [ "$#" -lt 2 ]
+    if [ $# -lt 2 ]
     then
-        echo "$#" 1>&2
         echo "${0}: ${FUNCNAME[0]} failed: no input file is given" 1>&2
         exit 1
     fi
@@ -236,13 +235,11 @@ function safe_rln
     #   check
     if [ "${src_path:0:1}" != "/" ]
     then
-        echo "$#" 1>&2
         echo "${0}: ${FUNCNAME[0]} failed: only support absolute path" 1>&2
         exit 1
     fi
     if [ "${tgt_path:0:1}" != "/" ]
     then
-        echo "$#" 1>&2
         echo "${0}: ${FUNCNAME[0]} failed: only support absolute path" 1>&2
         exit 1
     fi
@@ -274,7 +271,7 @@ function safe_rln
 function equal_line
 {
     #   check no input file
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${0}: ${FUNCNAME[0]} file [file]..." 1>&2
         return 1
@@ -325,7 +322,7 @@ function get_abs_path
 #   get relative path
 function get_rel_path
 {
-    if [ "$#" -lt 3 ]
+    if [ $# -lt 3 ]
     then
         echo "${FUNCNAME[0]} src_path tgt_path rel_path" 1>&2
         echo "Function:" 1>&2
@@ -343,10 +340,20 @@ function get_rel_path
     return 0
 }
 
+# Ensure running in Python's virtual environment.
+function ensure_python_venv
+{
+    if [ -z "${VIRTUAL_ENV:-}" ]
+    then
+        safe_execute "source '${HOME}/venv/bin/activate'"
+    fi
+    return 0
+}
+
 #   get date str
 function get_date_str
 {
-    if [ "$#" -lt 1 ]
+    if [ $# -lt 1 ]
     then
         echo "${FUNCNAME[0]} date_str" 1>&2
         exit 1
