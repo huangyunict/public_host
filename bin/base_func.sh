@@ -350,6 +350,17 @@ function ensure_python_venv
     return 0
 }
 
+# Exit the program if git branch is not clean.
+function assert_git_clean
+{
+    if [ -n "$(git status -s)" ]
+    then
+        echo "Git branch is not clean, exit." 1>&2
+        exit 1
+    fi
+    return 0
+}
+
 #   get date str
 function get_date_str
 {
