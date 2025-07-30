@@ -353,9 +353,10 @@ function ensure_python_venv
 # Exit the program if git branch is not clean.
 function assert_git_clean
 {
-    if [ -n "$(git status -s)" ]
+    if ! git diff --quiet || ! git diff --cached --quiet
     then
         echo "Git branch is not clean, exit." 1>&2
+        echo "    $(pwd)" 1>&2
         exit 1
     fi
     return 0
