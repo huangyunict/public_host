@@ -343,9 +343,14 @@ function get_rel_path
 # Ensure running in Python's virtual environment.
 function ensure_python_venv
 {
-    if [ -z "${VIRTUAL_ENV:-}" ]
+    if [[ -z "${VIRTUAL_ENV:-}" ]]
     then
-        safe_execute "source '${HOME}/venv/bin/activate'"
+        if [[ -f '.venv/bin/activate' ]]
+        then
+            safe_execute "source '.venv/bin/activate'"
+        else
+            safe_execute "source '${HOME}/venv/bin/activate'"
+        fi
     fi
     return 0
 }
